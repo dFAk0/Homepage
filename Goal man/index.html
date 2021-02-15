@@ -12,6 +12,7 @@ var topHX = -10;
 var topY = random(50,550);
 var topHY = 5;
 var solcubukY = 250;
+var FPS = 40
 var kaleY = random(25,550);
 var kaleHY = -5;
 const PADDLE_HEIGHT = 150;
@@ -56,7 +57,6 @@ window.onload = function(){
   
     canvas = document.getElementById('insan')
     canvasContext = canvas.getContext('2d')
-    var FPS = 37;
     setInterval(a, 1000/FPS)
 
 function animasyon(){
