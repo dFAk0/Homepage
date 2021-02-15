@@ -6,7 +6,9 @@ var sayi = 0
 var yürütme = false
 var sayi2 = 0
 var canvas;
+var press = false
 var canvasContext;
+var animasyon;
 var topX = random(200,750);
 var topHX = -10;
 var topY = random(50,550);
@@ -43,6 +45,7 @@ function check(e){
         
 if(yürütme === true) return
         animasyon()
+        press = true
         yürütme = true
     }
 }
@@ -52,16 +55,16 @@ resim = setInterval(a ,1000/FPS)
 setTimeout(function(){
     clearInterval(resim)
 },33)
-
+press
 window.onload = function(){
   
     canvas = document.getElementById('insan')
     canvasContext = canvas.getContext('2d')
-    setInterval(a, 1000/FPS)
-
-function animasyon(){
-  animasonInt = setInterval(all,1000/FPS)
+    
 }
+function animasyon(){
+  animasonInt = setInterval(a,1000/FPS)
+
 
     canvas.addEventListener('mousemove',
 		function(evt) {
@@ -79,7 +82,7 @@ function h(){
     topX = topX + topHX;
     topY = topY + topHY;
     kaleY = kaleY + kaleHY;
-    if(topX < 13) {
+    if(topX < 17) {
         if(topY > solcubukY &&
         topY < solcubukY + PADDLE_HEIGHT){
 topHX = -topHX
@@ -95,7 +98,7 @@ topHX = -topHX
         topHY = -topHY
         
     }
-    if(topX > 790) {
+    if(topX > 770) {
         if(topY > kaleY &&
         topY < kaleY + KALE_HEIGHT){
         topHX = -topHX
@@ -143,10 +146,10 @@ function ç(){
     r(395,0,10,600,'white')
     canvasContext.font = "50px Georgia";
     canvasContext.fillStyle = "black"
-           canvasContext.fillText(sayi, 325, 100);
+           canvasContext.fillText(sayi+ '/10', 275, 100);
            canvasContext.font = "50px Georgia";
     canvasContext.fillStyle = "black"
-           canvasContext.fillText(sayi2, 440, 100);
+           canvasContext.fillText(sayi2+ '/10', 420, 100);
     r(0,295,800,10,'white')
     
     //kaleci
@@ -169,13 +172,14 @@ function ç(){
 
 
 
-    
+if (press === true){
     rÇ(topX,topY,7.5,'green');
+}
     if(press === false){  
-ctx.font ='50px Arial'
-ctx.fillStyle ='red'
-ctx.fillText('PRESS "SPACE" TO START', 100, 400)
-ctx.fillText('GOAL MAN',275, 100)
+canvasContext.font ='50px Arial'
+canvasContext.fillStyle ='blue'
+canvasContext.fillText('PRESS "SPACE" TO START', 100, 500)
+canvasContext.fillText('GOAL MAN',275, 150)
  }
 
 

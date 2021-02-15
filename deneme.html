@@ -1,0 +1,202 @@
+<html>
+    <canvas  id='deneme' width='1368' height='720'></canvas>
+<script>
+    var canvas;
+    var ctx;
+    var humanX = 1368/2
+    var humanY = 720/2
+    var un = true
+    var W = false;
+    var A = false;
+    var S = false;
+    var D = false;
+    var F = false
+    var FK = false
+    var treeX = random(100,1368-100)
+    var treeY = random(100,720-100)
+    var health = 600
+    var brub = 15
+    const HUMAN_RAD = 20;
+    function calculateMousePos(evt) {
+	var rect = canvas.getBoundingClientRect();
+	var root = document.documentElement;
+	var mouseX = evt.clientX - rect.left - root.scrollLeft;
+    var mouseY = evt.clientY - rect.top - root.scrollTop;
+	return {
+		x:mouseX,
+		y:mouseY
+	};
+}
+function random(min,max){
+    return min + Math.floor((max - min) * Math.random());
+    console.log(random)
+    
+    
+   
+}
+    window.onload = function(){
+  
+  canvas = document.getElementById('deneme')
+  ctx = canvas.getContext('2d')
+  var FPS = 60;
+  setInterval(All, 1000/FPS)
+  canvas.addEventListener('mousemove',
+		function(evt) {
+            var mousePos = calculateMousePos(evt);
+           
+		});
+}
+window.addEventListener("keydown",onkeydown,false)
+window.addEventListener("keyup",onkeyup,false)
+function onkeydown(e){
+var keyCode = e.keyCode
+if(keyCode === 70 ){
+    if(FK === true) return
+    FK = true;
+    setTimeout(function(){
+        FK = false
+        F = true 
+    }, 1000)
+    console.log('brub')
+            
+    
+}
+if(keyCode === 87){
+    W = true;
+}
+if(keyCode === 83){
+        S = true;
+    }
+    if(keyCode === 65){
+    A = true;
+}
+if(keyCode === 68){
+        D = true;
+    }
+}
+function onkeyup(e){
+    var keyCode = e.keyCode
+    if(keyCode === 70){
+        F = false
+    }
+    if(keyCode === 87){
+        W = false;
+    }
+    if(keyCode === 83){
+        S = false;
+    }
+    if(keyCode === 65){
+        A = false;
+    }
+    if(keyCode === 68){
+        D = false;
+    }
+}
+
+        
+        
+function move(){
+    if(F === true){
+        if(FK === true){
+      brub = 25
+       setTimeout(function(){
+      brub = 15
+  },400)
+}
+    }
+if(W === true){
+    treeY += 2
+}
+if(S === true){
+    treeY -= 2
+}
+if(A === true){
+    treeX += 2
+}
+if(D === true){
+    treeX -= 2
+}
+if(humanX > 775){
+humanX = 775
+}
+if(humanX < 25){
+humanX = 25
+}
+if(humanY > 575){
+humanY = 575
+}
+if(humanY < 25){
+humanY = 25
+}
+if(humanX +25 > treeX - 30){
+    if(humanY + 25 > treeY -30){
+        if(humanX - 25 < treeX + 25){
+            if(humanY - 25 < treeY +25){
+                if(A === true){
+               treeX -= 2
+        
+        }
+        if(S === true){
+            treeY += 2
+        
+        }
+        if(D === true){
+            treeX += 2
+        
+        }
+        if(W === true){
+            treeY -= 2
+    
+        }
+
+               
+               
+                
+            if(F === true){
+            
+                health -= 1
+                
+            }
+            }
+
+        }
+        
+    }
+}
+
+
+    
+}
+
+
+
+function drawAll(){
+    draw(0,0,canvas.width,canvas.height,'green')
+
+    daire(treeX,treeY,30,'brown')
+    daire(treeX- 100,treeY- 100,30,'brown')
+    daire(treeX,treeY,30,'brown')
+
+    daire(humanX,humanY,HUMAN_RAD,'#e09a65')
+    daire(humanX - 20,humanY - 15,HUMAN_RAD - 12,'#e09a65')
+    daire(humanX + 20,humanY - brub,HUMAN_RAD - 12 ,'#e09a65')
+
+}
+function All(){
+    drawAll()
+    move()
+}
+function draw(solX,üstY,width,height,renk){
+    ctx.fillStyle = renk;
+    ctx.fillRect(solX,üstY,width,height)
+    
+}
+function daire(MX,MY,yç,renk) {
+    ctx.fillStyle = renk
+    ctx.beginPath()
+    ctx.arc(MX,MY,yç,0,Math.PI*2, true)
+    ctx.fill();
+}
+
+</script>
+</html>
