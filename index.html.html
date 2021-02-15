@@ -1,0 +1,311 @@
+<html>
+   
+    <audio id="sound" src="background.wav" style="display: none; " loop="true" ></audio>
+   
+        
+<canvas id='dinozor' width='800' height='600'></canvas>
+<script>
+
+var ctx;
+var animasonInt;
+var yürütme = false
+
+var canvas;
+var press = false
+var sound;
+
+var soundLoad = "background.mp3"
+var kaktusX = 800;
+var kaktusSpeedX= -10;
+var bulutX = 775 ;
+var bulutSpeedX = -2
+var gunesX = 100
+var FPS = 30
+var gunesY = 99
+var gunesSpeedY = 0.6
+var dinozorY = 205
+var dinozorSpeedY = 0
+var kaktusY = 200
+var dinozorX = 100
+var ayakY = 200
+var ayakSpeedY = 10
+var point;
+var tasX = 795
+var tasSpeedX = -10
+var tasX1 = 500
+var tasSpeedX1 = -10
+var tasX2 = 300
+var tasSpeedX2 = -10
+var tasX3 = 600
+var tasSpeedX3 = -10
+var skyY = -605
+var skySpeedY = 2
+var bulutX1 = 775
+var bulutSpeedX1 = -5
+var ayakX = 100
+var ayakSpeedX = 0.7
+const DINOZOR_HEIGHT = 50
+const DINOZOR_WIDHT = 30
+const KAKTUS_HEIGHT = 50
+var animasyon;
+
+
+function random(min,max){
+    return min + Math.floor((max - min) * Math.random());
+    console.log(random)
+    
+    
+   
+}
+function şarkı(){
+ 
+ AudioListener(document.getElementById('ses'))
+}
+
+
+window.addEventListener('keydown',this.check,false);
+function check(e){
+    var code = e.keyCode;
+    
+    if(code === 32){
+       
+       
+        sound.play()
+        
+        
+if(dinozorY == 200){
+        
+    dinozorSpeedY = -15
+    
+    setTimeout(function(){
+        dinozorSpeedY = 15
+      
+    },400)
+
+}
+if(yürütme === true) return
+        animasyon()
+        yürütme = true
+        press = true
+    }
+}
+
+resim = setInterval(all,1000/FPS)
+setTimeout(function(){
+    clearInterval(resim)
+},33)
+window.onload = function() {
+canvas = document.getElementById('dinozor')
+ctx = canvas.getContext('2d')
+FPS = 30
+
+sound = document.getElementById("sound")
+
+
+}
+function animasyon(){
+  animasonInt = setInterval(all,1000/FPS)
+}
+
+function kaybet(){
+    
+
+clearInterval(animasonInt)
+
+
+
+}
+
+
+      
+  
+  
+     
+  
+
+
+function all(){
+    move(),
+    draw()
+}
+
+function move(){
+    
+    
+    bulutX1 = bulutX1 + bulutSpeedX1
+    ayakX = ayakX + ayakSpeedX + 0.01
+    point = Math.round(kaktusSpeedX*-50)-500
+    kaktusSpeedX = kaktusSpeedX + -0.01
+    kaktusX = kaktusX + kaktusSpeedX
+    bulutX = bulutX + bulutSpeedX
+    dinozorY = dinozorY + dinozorSpeedY
+    dinozorY = dinozorY + ayakSpeedY
+    
+    gunesY = gunesY + gunesSpeedY
+    tasX = tasX + tasSpeedX + -0.01
+    tasX1 = tasX1 + tasSpeedX1 + -0.01
+    tasX2 = tasX2 + tasSpeedX2 + -0.01
+    tasX3 = tasX3 + tasSpeedX3 + -0.01
+    skyY = skyY + skySpeedY 
+    if(dinozorY > 200){
+            dinozorY = 200
+        }
+    
+    if(tasX < -50){
+        tasX = 800
+    }
+    if(dinozorY < 195){
+        ayakSpeedY = -ayakSpeedY
+    }
+    if(dinozorY > 200){
+        ayakSpeedY = -ayakSpeedY
+    }
+    if(tasX1 < -50){
+        tasX1 = 800
+    }
+    if (ayakX > 105){
+    ayakX = 100
+    }
+    
+   
+    if(tasX2 < -50){
+        tasX2 = 800
+    }
+    if(tasX3 < -50){
+        tasX3 = 800
+    }
+    if(skyY > 500){
+        skyY = -600
+    }
+
+    if(kaktusX < -50){
+        kaktusX = random(800, 1500)
+    }
+    if(bulutX < -300){
+        bulutX = 800
+    }
+    if(bulutX1 < -600){
+        bulutX1 = 800
+    }
+    if(gunesX < -200){
+        gunesX = 825
+        gunesY = 250
+        gunesSpeedY = -gunesSpeedY
+    }
+    if (gunesY > 250){
+        gunesSpeedY = -gunesSpeedY
+    }
+    if (gunesY < 99){
+        gunesSpeedY = -gunesSpeedY
+    }
+    
+    if(dinozorY + DINOZOR_HEIGHT > kaktusY) {
+        if(dinozorX + DINOZOR_WIDHT >= kaktusX ){
+            if(dinozorX > kaktusX + KAKTUS_HEIGHT) return;
+            
+alert('GAME OVER \nPRESS F5 TO RESTART\nYOUR SCORE: '  +   point)
+kaybet()
+
+       
+    }
+    }
+
+    
+
+}
+
+
+function drawi(solX,üstY,width,height,renk){
+    ctx.fillStyle = renk;
+    ctx.fillRect(solX,üstY,width,height)
+
+    
+}
+
+function draw(){
+    
+  
+drawi(0,0,canvas.width,canvas.height,'cyan')
+drawi(0,skyY,canvas.width,canvas.height,'#232529')
+drawi(100,100,200,200,'gray')
+drawi(150,100,150,150,'#dfe2e8')
+drawi(150,100,150,30,'gray')
+
+drawi(gunesX,gunesY,200,200,'yellow')
+drawi(gunesX + 25,gunesY + 25,150,150,'#ffecb5')
+
+drawi(bulutX,50,200,100,'#c2baa7')
+drawi(bulutX + 100,90,200,100,'#c2baa7')
+drawi(bulutX1 + 100,50,300,100,'white')
+drawi(bulutX1 + 250,100,200,100,'white')
+
+drawi(0,250,800,350,'khaki')
+drawi(0,250,800,10,'darkkhaki')
+drawi(0,250,800,5,'#e39b5d')
+drawi(tasX,350,10,7.5,'#3d3c36')
+drawi(tasX,280,15,10,'#3d3c36')
+drawi(tasX,455,20,15,'#3d3c36')
+drawi(tasX1,390,10,7.5,'#3d3c36')
+drawi(tasX1,290,15,10,'#3d3c36')
+drawi(tasX1,309,25,15,'#453e38')
+drawi(tasX2,508,30,15,'#453e38')
+drawi(tasX2,560,10,5,'#453e38')
+drawi(tasX2,580,25,20,'#453e38')
+drawi(tasX3,389,25,10,'#453e38')
+drawi(tasX3,480,20,10,'#453e38')
+drawi(tasX3,455,10,15,'#453e38')
+drawi(100,dinozorY,DINOZOR_WIDHT,DINOZOR_HEIGHT,'white')
+drawi(110,dinozorY - 35,30,25,'white')
+drawi(130,dinozorY - 20,30,10,'orange')
+drawi(130,dinozorY - 30,10,5,'black')
+drawi(90,dinozorY + 10,20,30,'#c9c4bf')
+drawi(100,dinozorY ,10,20,'#c9c4bf')
+drawi(113,dinozorY - 20,13,20,'white')
+drawi(ayakX,dinozorY + 50,10,5,'orange')
+drawi(ayakX + 20,dinozorY + 50,10,5,'orange')
+drawi(kaktusX,kaktusY - 50,25,KAKTUS_HEIGHT + 50,'green')
+drawi(kaktusX - 30,kaktusY - 40,15,KAKTUS_HEIGHT -10,'green')
+drawi(kaktusX + 40,kaktusY  -40,15,KAKTUS_HEIGHT - 10,'green')
+drawi(kaktusX -30,kaktusY  ,85,KAKTUS_HEIGHT - 30,'green')
+drawi(kaktusX + 20 ,kaktusY + 20 ,5,5,'black')
+drawi(kaktusX + 10 ,kaktusY + 15 ,5,5,'black')
+drawi(kaktusX + 20 ,kaktusY + 0 ,5,5,'black')
+drawi(kaktusX + 10 ,kaktusY + 40 ,5,5,'black')
+drawi(kaktusX + 10 ,kaktusY + 5 ,5,5,'black')
+drawi(kaktusX + 5 ,kaktusY + 20 ,5,5,'black')
+drawi(kaktusX + 20 ,kaktusY + 0 ,5,5,'black')
+drawi(kaktusX + 15 ,kaktusY + 30 ,5,5,'black')
+drawi(kaktusX + 20 ,kaktusY - 3 ,5,5,'black')
+drawi(kaktusX + 10 ,kaktusY - 3 ,5,5,'black')
+drawi(kaktusX + 0 ,kaktusY - 3 ,5,5,'black')
+drawi(kaktusX - 3 ,kaktusY + 10 ,5,5,'black')
+drawi(kaktusX - 3 ,kaktusY + 30 ,5,5,'black')
+drawi(kaktusX - 3 ,kaktusY + 20 ,5,5,'black')
+drawi(kaktusX + 25 ,kaktusY + 10 ,5,5,'black')
+drawi(kaktusX + 25 ,kaktusY + 30 ,5,5,'black')
+drawi(kaktusX + 25 ,kaktusY + 20 ,5,5,'black')
+
+
+
+ if(press === false){  
+ctx.font ='50px Arial'
+ctx.fillStyle ='purple'
+ctx.fillText('PRESS "SPACE" TO START', 100, 400)
+ctx.fillText('JUMP DUDE',275, 100)
+ }
+
+
+
+ctx.font = "50px Arial";
+    ctx.fillStyle = "black"
+           ctx.fillText(point, 700, 50);
+
+
+}
+
+
+
+</script>
+
+
+</html>
