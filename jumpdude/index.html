@@ -284,19 +284,20 @@ drawi(kaktusX + 25 ,kaktusY + 30 ,5,5,'black')
 drawi(kaktusX + 25 ,kaktusY + 20 ,5,5,'black')
 
 
+ctx.font = "50px Arial";
+    ctx.fillStyle = "black"
+           ctx.fillText(point, 700, 50);
+
 
  if(press === false){  
+    drawi(0,0,canvas.width,canvas.height,'purple')
 ctx.font ='50px Arial'
-ctx.fillStyle ='purple'
+ctx.fillStyle ='black'
 ctx.fillText('PRESS "SPACE" TO START', 100, 400)
 ctx.fillText('JUMP DUDE',275, 100)
  }
 
 
-
-ctx.font = "50px Arial";
-    ctx.fillStyle = "black"
-           ctx.fillText(point, 700, 50);
 
 
 }

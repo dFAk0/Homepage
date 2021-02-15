@@ -69,7 +69,7 @@ function animasyon(){
     canvas.addEventListener('mousemove',
 		function(evt) {
 			var mousePos = calculateMousePos(evt);
-			solcubukY = mousePos.y - (PADDLE_HEIGHT/2);
+			solcubukY = mousePos.y - (PADDLE_HEIGHT/2)
 		});
 }
 function a(){
@@ -176,8 +176,9 @@ if (press === true){
     rÇ(topX,topY,7.5,'green');
 }
     if(press === false){  
+r(0,0,canvas.width,canvas.height,'blue')
 canvasContext.font ='50px Arial'
-canvasContext.fillStyle ='blue'
+canvasContext.fillStyle ='black'
 canvasContext.fillText('PRESS "SPACE" TO START', 100, 500)
 canvasContext.fillText('GOAL MAN',275, 150)
  }
