@@ -1,0 +1,209 @@
+<html style="background-color: pink;">
+    
+<canvas id='insan' width='800' height='600'> </canvas>
+<script>
+var sayi = 0
+var yürütme = false
+var sayi2 = 0
+var canvas;
+var canvasContext;
+var topX = random(200,750);
+var topHX = -10;
+var topY = random(50,550);
+var topHY = 5;
+var solcubukY = 250;
+var kaleY = random(25,550);
+var kaleHY = -5;
+const PADDLE_HEIGHT = 150;
+const KALE_HEIGHT = 200
+function calculateMousePos(evt) {
+	var rect = canvas.getBoundingClientRect();
+	var root = document.documentElement;
+	var mouseX = evt.clientX - rect.left - root.scrollLeft;
+	var mouseY = evt.clientY - rect.top - root.scrollTop;
+	return {
+		x:mouseX,
+		y:mouseY
+	};
+}
+
+function random(min,max){
+    return min + Math.floor((max - min) * Math.random());
+    console.log(random)
+    
+    
+   
+}
+window.addEventListener('keydown',this.check,false);
+function check(e){
+    var code = e.keyCode;
+    
+    if(code === 32){
+        
+if(yürütme === true) return
+        animasyon()
+        yürütme = true
+    }
+}
+
+
+resim = setInterval(a ,1000/FPS)
+setTimeout(function(){
+    clearInterval(resim)
+},33)
+
+window.onload = function(){
+  
+    canvas = document.getElementById('insan')
+    canvasContext = canvas.getContext('2d')
+    var FPS = 37;
+    setInterval(a, 1000/FPS)
+
+function animasyon(){
+  animasonInt = setInterval(all,1000/FPS)
+}
+
+    canvas.addEventListener('mousemove',
+		function(evt) {
+			var mousePos = calculateMousePos(evt);
+			solcubukY = mousePos.y - (PADDLE_HEIGHT/2);
+		});
+}
+function a(){
+    h()
+    ç()
+}
+
+
+function h(){
+    topX = topX + topHX;
+    topY = topY + topHY;
+    kaleY = kaleY + kaleHY;
+    if(topX < 13) {
+        if(topY > solcubukY &&
+        topY < solcubukY + PADDLE_HEIGHT){
+topHX = -topHX
+
+
+       
+    }else{
+        topHX = -topHX
+        sayi2 = sayi2 + 1
+    }}
+
+    if(topY < 0) {
+        topHY = -topHY
+        
+    }
+    if(topX > 790) {
+        if(topY > kaleY &&
+        topY < kaleY + KALE_HEIGHT){
+        topHX = -topHX
+
+        sayi = sayi + 1
+         
+    
+        
+        
+        
+
+        }else{
+            topHX = -topHX
+        }
+    }
+    if(topY > canvas.height) {
+        topHY = -topHY
+    }
+    if(kaleY > 550) {
+        kaleHY = -kaleHY
+    }
+    if(kaleY < 20) {
+        kaleHY = -kaleHY
+    }
+   
+    
+    
+}
+
+
+function ç(){
+    console.log(sayi)
+    if (sayi >= 10){
+        alert('PLAYER WINS!!')
+        
+    }
+    if (sayi2 >= 10){
+        alert('COMPUTER WINS!!')
+        
+        
+    }
+    //siyah kısım oluştu
+    
+    r(0,0,canvas.width,canvas.height,'cyan')
+    r(395,0,10,600,'white')
+    canvasContext.font = "50px Georgia";
+    canvasContext.fillStyle = "black"
+           canvasContext.fillText(sayi, 325, 100);
+           canvasContext.font = "50px Georgia";
+    canvasContext.fillStyle = "black"
+           canvasContext.fillText(sayi2, 440, 100);
+    r(0,295,800,10,'white')
+    
+    //kaleci
+    r(0,solcubukY,10,PADDLE_HEIGHT,'red')
+
+    r(775,kaleY,25,KALE_HEIGHT,'white')
+    
+    
+
+    rÇ(canvas.width/2,canvas.height/2,100,100,'white');
+   
+    r(350,250,100,100,'black')
+    r(375,225,50,150,'red')
+    r(325,275,150,50,'red')
+    
+    
+
+    
+
+
+
+
+    
+    rÇ(topX,topY,7.5,'green');
+    if(press === false){  
+ctx.font ='50px Arial'
+ctx.fillStyle ='red'
+ctx.fillText('PRESS "SPACE" TO START', 100, 400)
+ctx.fillText('GOAL MAN',275, 100)
+ }
+
+
+
+
+
+    
+
+}
+
+function rÇ(MX,MY,yç,renk) {
+    canvasContext.fillStyle = renk
+    canvasContext.beginPath()
+    canvasContext.arc(MX,MY,yç,0,Math.PI*2, true)
+    canvasContext.fill();
+}
+function r(solX,üstY, width,height,renk){
+    canvasContext.fillStyle = renk;
+    canvasContext.fillRect(solX,üstY, width,height)
+}
+</script>
+
+
+
+
+
+
+
+
+
+</html>
