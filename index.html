@@ -1,15 +1,43 @@
-<html style="background-color: pink;">
-
+<html style="background-color:black;">
+    <link rel="shortcut icon" type="image/jpg" href="Favicon.png"/>
 <a href="http://dfak0.ml/jumpdude">
-<button style="width: 200px ;box-shadow: 5px 5px gray; height: 100px;font-size: 30px; background-color: blue; color: red;">JUMPDUDE</button>
+<button id='jump' style="width: 200px ;box-shadow: 5px 5px rgb(22, 22, 22); height: 100px;font-size: 30px; background-color: rgb(41, 41, 54); color: rgb(172, 65, 194);">JUMPDUDE</button>
 
 </a>  
 <p></p>
 
  <a href="http://dfak0.ml/Goal man">
-    <button style="width: 200px ;box-shadow: 5px 5px gray; height: 100px;font-size: 30px; background-color: blue; color: red;">GOAL MAN</button>
+    <button id="goal" style="width: 200px ;box-shadow: 5px 5px rgb(34, 33, 33); height: 100px;font-size: 30px; background-color:rgb(41, 41, 54); color: rgb(172, 65, 194);">GOAL MAN</button>
     
     </a>
+
+    <script>
+function calculateMousePos(evt) {
+        var rect = canvas.getBoundingClientRect();
+        var root = document.documentElement;
+        var mouseX = evt.clientX - rect.left - root.scrollLeft;
+        var mouseY = evt.clientY - rect.top - root.scrollTop;
+        return {
+            x:mouseX,
+            y:mouseY
+        };
+    }
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
 
 
 
