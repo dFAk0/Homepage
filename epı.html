@@ -9,16 +9,29 @@ var canvas;
 var press = false
 var canvasContext;
 var animasyon;
-var topX = random(10,790)
 var topY = 0
 var topHY = 5;
 var solcubukY = 580;
 var FPS = 40
 var kaleY = random(25,550);
 var kaleHY = -5;
-var elmalar = []
 const PADDLE_HEIGHT = 150;
 const KALE_HEIGHT = 200
+var toplar = []
+var topX = []
+  
+
+function create() {
+   
+   
+    for (var i = 0; i < 50; i++)
+    {
+        console.log(topX[Math.floor(Math.random() * topX.length)])
+        rÇ(topX,topY,15,'red');
+
+    }
+
+}
 function calculateMousePos(evt) {
 	var rect = canvas.getBoundingClientRect();
 	var root = document.documentElement;
@@ -106,6 +119,7 @@ sayi = sayi + 1
     if(kaleY < 20) {
         kaleHY = -kaleHY
     }
+
    
     
     
@@ -113,8 +127,14 @@ sayi = sayi + 1
 
 
 function ç(){
+    for(var i = 0; i< 50; i++)
+   {
+   
+    topX = [random(10,790)]
+
+   }
     if (sayi >= 10){
-        alert('YOU WINS!!')
+        alert('YOU WIN!!')
         
     }
     if (sayi2 >= 3){
@@ -133,13 +153,7 @@ function ç(){
 
   
     
-    
-   
-elmalar.forEach(function(){
-    topX = random(10,790)
-})
-    
-    rÇ(topX,topY,15,'red');
+    create()
     
 
    
@@ -168,14 +182,7 @@ canvasContext.fillText('APPLE GIRL',275, 150)
     
 
 }
-for(var i=0; i< 100 ;i++)
-{
-    elmalar.forEach(function(){
-        topX = random(10,590)
-    })
-    elmalar[i] =  rÇ(topX,topY,15,'red');
-    
-}
+
 
 
 function rÇ(MX,MY,yç,renk) {
