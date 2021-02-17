@@ -1,6 +1,8 @@
 <html style="background-color: rgba(28, 23, 34, 0.74);">
     <link rel="shortcut icon" type="image/jpg" href="Favicon.png"/>
     <audio id="sound" src="background.wav" style="display: none; " loop="true" ></audio>
+    <audio id="jump" src="jump.wav" style="display: none; "  ></audio>
+    <audio id="lose" src="kaybet.wav" style="display: none; "  ></audio>
    
         
 <canvas id='dinozor' width='800' height='600'></canvas>
@@ -12,9 +14,11 @@ var yürütme = false
 
 var canvas;
 var press = false
+var kaybet1 = false
 var sound;
-
-var soundLoad = "background.mp3"
+var lose;
+var jump;
+var soundLoad ;
 var kaktusX = 800;
 var kaktusSpeedX= -10;
 var bulutX = 775 ;
@@ -68,10 +72,18 @@ function check(e){
     var code = e.keyCode;
     
     if(code === 32){
-       
-       
+       {
+           if(kaybet1 === false){
+           if(dinozorY === 200){
+           soundLoad = "jump.wav"
+           jump.play()
+           }
+           }
+       }
+       if(kaybet1 === false){
+       soundLoad = "background.wav"
         sound.play()
-        
+       }
         
 if(dinozorY == 200){
         
@@ -100,6 +112,8 @@ ctx = canvas.getContext('2d')
 FPS = 30
 
 sound = document.getElementById("sound")
+jump = document.getElementById("jump")
+lose = document.getElementById("lose")
 
 
 }
@@ -174,9 +188,13 @@ function move(){
     if(tasX3 < -50){
         tasX3 = 800
     }
-    if(skyY > 500){
-        skyY = -600
+    if(skyY > -200){
+        skySpeedY = -skySpeedY
     }
+    if(skyY < -705){
+        skySpeedY = -skySpeedY
+    }
+   
 
     if(kaktusX < -50){
         kaktusX = random(800, 1500)
@@ -202,9 +220,16 @@ function move(){
     if(dinozorY + DINOZOR_HEIGHT  > kaktusY) {
         if(dinozorX + DINOZOR_WIDHT >= kaktusX ){
             if(dinozorX > kaktusX + KAKTUS_HEIGHT ) return;
-            
-alert('GAME OVER \nPRESS F5 TO RESTART\nYOUR SCORE: '  +   point)
-kaybet()
+            soundLoad = "kaybet.wav"
+            lose.play()
+            sound.pause()
+            kaybet1 = true
+            kaybet()   
+            setInterval(function(){
+                alert('GAME OVER \nPRESS F5 TO RESTART\nYOUR SCORE: '  +   point)
+            },400)
+
+
 
        
     }
@@ -254,15 +279,13 @@ drawi(tasX2,580,25,20,'#453e38')
 drawi(tasX3,389,25,10,'#453e38')
 drawi(tasX3,480,20,10,'#453e38')
 drawi(tasX3,455,10,15,'#453e38')
-drawi(100,dinozorY,DINOZOR_WIDHT,DINOZOR_HEIGHT,'white')
-drawi(110,dinozorY - 35,30,25,'white')
-drawi(130,dinozorY - 20,30,10,'orange')
-drawi(130,dinozorY - 30,10,5,'black')
-drawi(90,dinozorY + 10,20,30,'#c9c4bf')
-drawi(100,dinozorY ,10,20,'#c9c4bf')
-drawi(113,dinozorY - 20,13,20,'white')
-drawi(ayakX,dinozorY + 50,10,5,'orange')
-drawi(ayakX + 20,dinozorY + 50,10,5,'orange')
+drawi(100,dinozorY,DINOZOR_WIDHT,DINOZOR_HEIGHT,'#80a683')
+drawi(115,dinozorY  ,15,20,'#1f7326')
+drawi(125,dinozorY + 5,5,5,'black')
+drawi(120,dinozorY + 30,10,5,'black')
+
+drawi(ayakX,dinozorY + 50,10,5,'black')
+drawi(ayakX + 20,dinozorY + 50,10,5,'black')
 drawi(kaktusX,kaktusY ,25,KAKTUS_HEIGHT ,'green')
 
 drawi(kaktusX + 20 ,kaktusY + 20 ,5,5,'black')
@@ -286,7 +309,7 @@ drawi(kaktusX + 25 ,kaktusY + 20 ,5,5,'black')
 
 ctx.font = "50px Arial";
     ctx.fillStyle = "black"
-           ctx.fillText(point, 700, 50);
+           ctx.fillText(point, 350, 50);
 
 
  if(press === false){  

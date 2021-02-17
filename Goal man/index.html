@@ -1,11 +1,18 @@
 <html style="background-color: rgba(28, 23, 34, 0.74);">
     <link rel="shortcut icon" type="image/jpg" href="Favicon.png"/>
+    <audio id="ping" src="ping.wav" style="display: none; "  ></audio>
+    <audio id="kaybet" src="kaybet2.wav" style="display: none; "  ></audio>
+    <audio id="kazan" src="kazan.wav" style="display: none; "  ></audio>
 <canvas id='insan' width='800' height='600'> </canvas>
 <script>
 var sayi = 0
 var yürütme = false
 var sayi2 = 0
 var canvas;
+var ping;
+var kaybet;
+var kazan;
+var soundLoad;
 var press = false
 var canvasContext;
 var animasyon;
@@ -60,10 +67,13 @@ window.onload = function(){
   
     canvas = document.getElementById('insan')
     canvasContext = canvas.getContext('2d')
+    ping = document.getElementById("ping")
+    kaybet = document.getElementById("kaybet")
+    kazan = document.getElementById("kazan")
     
 }
 function animasyon(){
-  animasonInt = setInterval(a,1000/FPS)
+    animasyonInt = setInterval(a,1000/FPS)
 
 
     canvas.addEventListener('mousemove',
@@ -71,7 +81,7 @@ function animasyon(){
 			var mousePos = calculateMousePos(evt);
 			solcubukY = mousePos.y - (PADDLE_HEIGHT/2)
 		});
-}
+    }
 function a(){
     h()
     ç()
@@ -79,6 +89,7 @@ function a(){
 
 
 function h(){
+    soundLoad = "ping.wav"
     topX = topX + topHX;
     topY = topY + topHY;
     kaleY = kaleY + kaleHY;
@@ -87,15 +98,17 @@ function h(){
         topY < solcubukY + PADDLE_HEIGHT){
 topHX = -topHX
 
-
+ping.play()
        
     }else{
-        topHX = -topHX
+        
         sayi2 = sayi2 + 1
+        
     }}
 
     if(topY < 0) {
         topHY = -topHY
+        ping.play()
         
     }
     if(topX > 770) {
@@ -104,6 +117,7 @@ topHX = -topHX
         topHX = -topHX
 
         sayi = sayi + 1
+        ping.play() 
          
     
         
@@ -111,11 +125,15 @@ topHX = -topHX
         
 
         }else{
+            ping.play()
             topHX = -topHX
+            
         }
     }
     if(topY > canvas.height) {
+        ping.play()
         topHY = -topHY
+       
     }
     if(kaleY > 550) {
         kaleHY = -kaleHY
@@ -132,11 +150,23 @@ topHX = -topHX
 function ç(){
     console.log(sayi)
     if (sayi >= 10){
-        alert('YOU WINS!!')
-        
+        soundLoad = "kazan.wav"
+        kazan.play()
+        clearInterval(animasyonInt)
+        setInterval(function(){
+        alert('YOU WIN!!\n Press "f5" to play again')
+    },400)
     }
     if (sayi2 >= 1){
-        alert('YOU LOSE!!')
+        soundLoad = "kaybet2.wav"
+        
+        clearInterval(animasyonInt)
+        kaybet.play()
+        setInterval(function(){
+            alert('YOU LOSE!!\n Press "f5" to restart')
+        },400)
+       
+        
         
         
     }
