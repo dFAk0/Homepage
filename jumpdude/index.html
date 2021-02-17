@@ -35,6 +35,7 @@ var dinozorY = 205
 var dinozorSpeedY = 0
 var kaktusY = 200
 var dinozorX = 100
+var bitiş = false
 var ayakY = 200
 var ayakSpeedY = 10
 var point;
@@ -234,9 +235,12 @@ function move(){
             kaybet1 = true
             kaybet()   
             setInterval(function(){
-                alert('GAME OVER \nPRESS F5 TO RESTART\nYOUR SCORE: '  +   point)
+                if(bitiş === false){
+                alert('GAME OVER \nREFRESH THE SITE TO RESTART\nYOUR SCORE: '  +   point)
+                bitiş = true
+                }
             },400)
-
+            
 
 
        

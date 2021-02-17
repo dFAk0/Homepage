@@ -17,6 +17,7 @@ var canvas;
 var ping;
 var kaybet;
 var kazan;
+var bitiş = false
 var soundLoad;
 var press = false
 var canvasContext;
@@ -163,7 +164,10 @@ function ç(){
         kazan.play()
         clearInterval(animasyonInt)
         setInterval(function(){
+            if(bitiş === false){
         alert('YOU WIN!!\n Press "f5" to play again')
+            }
+            bitiş = true
     },400)
     }
     if (sayi2 >= 1){
@@ -172,7 +176,10 @@ function ç(){
         clearInterval(animasyonInt)
         kaybet.play()
         setInterval(function(){
+            if(bitiş === false){
             alert('YOU LOSE!!\n Press "f5" to restart')
+            }
+            bitiş = true
         },400)
        
         
