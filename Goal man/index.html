@@ -3,6 +3,7 @@
         <button id='back'  style=" font-size: 30px; background-color: rgb(41, 41, 54); color: white;"><</button>
         
         </a>
+        
     <link rel="shortcut icon" type="image/jpg" href="Favicon.png"/>
     <audio id="ping" src="ping.wav" style="display: none; "  ></audio>
     <audio id="kaybet" src="kaybet2.wav" style="display: none; "  ></audio>
@@ -48,17 +49,21 @@ function random(min,max){
     
    
 }
-window.addEventListener('keydown',this.check,false);
-function check(e){
-    var code = e.keyCode;
-    
-    if(code === 32){
-        
+function bruh(){        
 if(yürütme === true) return
         animasyon()
         press = true
         yürütme = true
     }
+window.addEventListener('keydown',this.check,false);
+function check(e){
+    var code = e.keyCode;
+    
+    if(code === 32){
+        bruh()
+
+    }
+   
 }
 
 
@@ -243,6 +248,9 @@ function r(solX,üstY, width,height,renk){
 
 
 
+<button onclick="solcubukY -= 50" style="background-color: red; width: 100px; height: 100px;">UP</button>
+<button onclick="solcubukY += 50" style="background-color: red; width: 100px; height: 100px;">DOWN</button>
+<button onclick="bruh()" style="background-color: rgb(0, 225, 255); width: 100px; height: 100px;">START</button>
 
 
 </html>

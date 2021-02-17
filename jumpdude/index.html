@@ -56,26 +56,7 @@ const DINOZOR_HEIGHT = 50
 const DINOZOR_WIDHT = 30
 const KAKTUS_HEIGHT = 50
 var animasyon;
-
-
-function random(min,max){
-    return min + Math.floor((max - min) * Math.random());
-    console.log(random)
-    
-    
-   
-}
-function şarkı(){
- 
- AudioListener(document.getElementById('ses'))
-}
-
-
-window.addEventListener('keydown',this.check,false);
-function check(e){
-    var code = e.keyCode;
-    
-    if(code === 32){
+function jumping(){
        {
            if(kaybet1 === false){
            if(dinozorY === 200){
@@ -104,6 +85,29 @@ if(yürütme === true) return
         yürütme = true
         press = true
     }
+
+
+function random(min,max){
+    return min + Math.floor((max - min) * Math.random());
+    console.log(random)
+    
+    
+   
+}
+function şarkı(){
+ 
+ AudioListener(document.getElementById('ses'))
+}
+
+
+window.addEventListener('keydown',this.check,false);
+function check(e){
+    var code = e.keyCode;
+    
+    if(code === 32){
+        
+        jumping()
+}
 }
 
 resim = setInterval(all,1000/FPS)
@@ -135,7 +139,7 @@ clearInterval(animasonInt)
 }
 
 
-      
+    
   
   
      
@@ -332,6 +336,7 @@ ctx.fillText('JUMP DUDE',275, 100)
 
 
 </script>
+<button onclick="jumping()" style="background-color: red; width: 100px;height: 100px; font-size: 25px;">SPACE</button>
 
 
 </html>
